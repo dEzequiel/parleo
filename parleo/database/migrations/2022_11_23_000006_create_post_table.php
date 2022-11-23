@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('content');
+            $table->string('media')->nullable();
             $table->timestamp('created_at')->nullable();
 
             $table->foreignId('user_id')
@@ -25,6 +26,10 @@ return new class extends Migration
 
             $table->foreignId('community_id')
                 ->constrained('community')
+                ->nullOnDelete();
+
+            $table->foreignId('tag_id')
+                ->constrained('tag')
                 ->nullOnDelete();
         });
     }
